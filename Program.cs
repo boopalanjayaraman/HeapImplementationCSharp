@@ -25,9 +25,17 @@ namespace HeapImplementation
 
             AfterMinHeapMaxHeapAdding_AverageCase();
 
+            TopNMinHeapConstruct();
+
+            BottomNMaxHeapConstruct();
+
             AfterBottomNMaxHeapAdding_WorstCase();
 
             AfterBottomNMaxHeapAdding_AverageCase();
+
+            BottomNEntityMinHeapConstruct();
+
+            TopNEntityMinHeapConstruct();
         }
 
         private static void BeforeMinHeapMaxHeap()
@@ -156,7 +164,6 @@ namespace HeapImplementation
 
             for (int val = data.Length; val > 0; val--)
             {
-                //data[val - 1] = val;
                 heap.Add(val);
             }
 
@@ -213,5 +220,100 @@ namespace HeapImplementation
             Console.WriteLine("Press any key to continue..");
             Console.ReadLine();
         }
+
+        private static void TopNEntityMinHeapConstruct()
+        {
+            PriceData[] data_arr = GetPriceData_Small();
+            TopNEntityMinHeap<PriceData, double> heap = new TopNEntityMinHeap<PriceData, double>(data_arr.Length, (pd) => pd.Open);
+
+            foreach (var item in data_arr)
+            {
+                heap.Add(item);
+            }
+            //Console.WriteLine(heap);
+
+            while (heap.CanPop())
+            {
+                Console.WriteLine(heap.Pop());
+            }
+
+            Console.ReadLine();
+        }
+
+        private static void BottomNEntityMinHeapConstruct()
+        {
+            PriceData[] data_arr = GetPriceData_Small();
+            BottomNEntityMaxHeap<PriceData, double> heap = new BottomNEntityMaxHeap<PriceData, double>(data_arr.Length, (pd) => pd.Open);
+
+            foreach (var item in data_arr)
+            {
+                heap.Add(item);
+            }
+            //Console.WriteLine(heap);
+
+            while (heap.CanPop())
+            {
+                Console.WriteLine(heap.Pop());
+            }
+
+            Console.ReadLine();
+        }
+
+        private static PriceData[] GetPriceData_Small()
+        {
+            return new PriceData[]
+            {
+                new PriceData { SecurityId = 8, SecurityName = "Sec 8", Open = 8.0},
+                new PriceData { SecurityId = 7, SecurityName = "Sec 7", Open = 7},
+                new PriceData { SecurityId = 2, SecurityName = "Sec 2", Open = 2},
+                new PriceData { SecurityId = 1, SecurityName = "Sec 1", Open = 1},
+                new PriceData { SecurityId = 18, SecurityName = "Sec 18", Open = 18},
+                new PriceData { SecurityId = 32, SecurityName = "Sec 32", Open = 32},
+                new PriceData { SecurityId = 16, SecurityName = "Sec 16", Open = 16},
+                new PriceData { SecurityId = 21, SecurityName = "Sec 21", Open = 21},
+                new PriceData { SecurityId = 4, SecurityName = "Sec 4", Open = 4},
+                new PriceData { SecurityId = 0, SecurityName = "Sec 0", Open = 0},
+                new PriceData { SecurityId = 70, SecurityName = "Sec 70", Open = 70},
+            };
+        }
+
+        private static void BottomNMaxHeapConstruct()
+        {
+            double[] data_arr = new[] { 8.0, 7, 2, 1, 18, 32, 16, 21, 4, 0, 70 };
+            BottomNMaxHeap<double> heap = new BottomNMaxHeap<double>(data_arr.Length);
+
+            foreach (var item in data_arr)
+            {
+                heap.Add(item);
+            }
+            //Console.WriteLine(heap);
+
+            while (heap.CanPop())
+            {
+                Console.WriteLine(heap.Pop());
+            }
+
+            Console.ReadLine();
+        }
+
+        private static void TopNMinHeapConstruct()
+        {
+            double[] data_arr = new[] { 8.0, 7, 2, 1, 18, 32, 16, 21, 4, 0, 70 };
+            TopNMinHeap<double> heap = new TopNMinHeap<double>(data_arr.Length);
+
+            foreach (var item in data_arr)
+            {
+                heap.Add(item);
+            }
+            //Console.WriteLine(heap);
+
+            while (heap.CanPop())
+            {
+                Console.WriteLine(heap.Pop());
+            }
+
+            Console.ReadLine();
+        }
+
     }
 }

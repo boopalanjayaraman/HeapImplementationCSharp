@@ -9,7 +9,7 @@ namespace HeapImplementation
     /// <summary>
     /// Contract for Heap data structure
     /// </summary>
-    public interface IHeap<T> where T : IComparable
+    public interface IHeap<T> 
     {
         /// <summary>
         /// Method for inserting an element into the heap data strucutre

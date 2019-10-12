@@ -11,7 +11,6 @@ namespace HeapImplementation
     /// </summary>
     /// <typeparam name="T">type of the data's base data type</typeparam>
     public abstract class AbstractHeap<T> : IHeap<T>
-        where T : IComparable
     {
         /// <summary>
         /// Underlying data array where Heap is being maintained
